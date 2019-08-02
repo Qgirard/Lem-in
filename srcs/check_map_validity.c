@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloctab.c                                    :+:      :+:    :+:   */
+/*   check_map_validity.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qgirard <qgirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/01 00:38:28 by qgirard           #+#    #+#             */
-/*   Updated: 2019/08/02 05:12:05 by qgirard          ###   ########.fr       */
+/*   Created: 2019/08/02 00:17:22 by qgirard           #+#    #+#             */
+/*   Updated: 2019/08/02 05:14:59 by qgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/lemin.h"
 
-char	**ft_realloctab(char ***tab)
+int		check_map_validity(t_room **rooms)
 {
-	char	**new;
-	int		i;
+	t_room	*tmp;
+	int		start;
+	int		end;
 
-	new = NULL;
-	i = 0;
-	while (*tab && (*tab)[i])
-		i++;
-	if (!(new = (char **)ft_memalloc(sizeof(char *) * (i + 2))))
-		return (NULL);
-	i = 0;
-	while (*tab && (*tab)[i])
+	tmp = (*rooms);
+	start = 0;
+	end = 0;
+	while (tmp)
 	{
-		if (!(new[i] = ft_strdup((*tab)[i])))
-			return (NULL);
-		ft_strdel(&((*tab)[i]));
-		i++;
+		if (tmp->start == 1)
+			start++;
+		if (tmp->end == 1)
+			end++;
+		tmp = tmp->next;
 	}
-	new[i + 1] = NULL;
-	if (*tab)
-		free(*tab);
-	return (new);
+	if (start != 1 || end != 1)
+		return (1);
+	return (0);
 }

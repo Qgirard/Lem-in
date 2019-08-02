@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloctab.c                                    :+:      :+:    :+:   */
+/*   free_lists.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qgirard <qgirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/01 00:38:28 by qgirard           #+#    #+#             */
-/*   Updated: 2019/08/02 05:12:05 by qgirard          ###   ########.fr       */
+/*   Created: 2019/08/02 01:56:55 by qgirard           #+#    #+#             */
+/*   Updated: 2019/08/02 05:15:07 by qgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/lemin.h"
 
-char	**ft_realloctab(char ***tab)
+int		free_lists(t_room **rooms, char ***tab, int var)
 {
-	char	**new;
+	t_room	*tmp;
 	int		i;
 
-	new = NULL;
 	i = 0;
-	while (*tab && (*tab)[i])
-		i++;
-	if (!(new = (char **)ft_memalloc(sizeof(char *) * (i + 2))))
-		return (NULL);
-	i = 0;
+	while (*rooms)
+	{
+		tmp = (*rooms);
+		(*rooms) = (*rooms)->next;
+		ft_strdel(&(tmp->name));
+		free(tmp);
+	}
 	while (*tab && (*tab)[i])
 	{
-		if (!(new[i] = ft_strdup((*tab)[i])))
-			return (NULL);
 		ft_strdel(&((*tab)[i]));
 		i++;
 	}
-	new[i + 1] = NULL;
-	if (*tab)
-		free(*tab);
-	return (new);
+	free(*tab);
+	if (var == 1)
+		ft_putendl("ERROR");
+	return (var);
 }

@@ -6,7 +6,7 @@
 /*   By: qgirard <qgirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 01:52:32 by qgirard           #+#    #+#             */
-/*   Updated: 2019/08/01 03:58:58 by qgirard          ###   ########.fr       */
+/*   Updated: 2019/08/02 05:14:11 by qgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ typedef struct		s_room
 	struct s_room	*next;
 }					t_room;
 
-int					checklines(t_room **rooms);
+int					checklines(t_room **rooms, char ***tab);
 int					fill_rooms_list(t_room **rooms, char *line, int *var);
+int					check_map_validity(t_room **rooms);
+int					free_lists(t_room **rooms, char ***tab, int var);
+int					error_of_status(int *status);
 
 #endif
