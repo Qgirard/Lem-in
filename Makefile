@@ -6,7 +6,7 @@
 #    By: qgirard <qgirard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/01 04:08:24 by qgirard           #+#    #+#              #
-#    Updated: 2019/08/02 05:14:19 by qgirard          ###   ########.fr        #
+#    Updated: 2019/08/03 04:48:11 by qgirard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CFLAGS = -g -Wall -Wextra -Werror
 #-g3 -fsanitize=address
 
 SRC = srcs/main.c srcs/checklines.c srcs/fill_lists.c srcs/check_map_validity.c \
-		srcs/free_lists.c srcs/error.c
+		srcs/free_lists.c srcs/error.c srcs/check_rooms_and_links.c
 
 OBJ = $(SRC:.c=.o)
 

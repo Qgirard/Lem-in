@@ -6,25 +6,40 @@
 /*   By: qgirard <qgirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 01:56:55 by qgirard           #+#    #+#             */
-/*   Updated: 2019/08/02 05:15:07 by qgirard          ###   ########.fr       */
+/*   Updated: 2019/08/03 04:39:06 by qgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lemin.h"
 
-int		free_lists(t_room **rooms, char ***tab, int var)
+int		free_rooms_and_links(t_room **rooms)
 {
 	t_room	*tmp;
+	t_links	*buf;
+	t_links	*index;
+
+	tmp = (*rooms);
+	buf = tmp->links;
+	while (buf)
+	{
+		index = buf;
+		ft_strdel(&(index->room));
+		buf = buf->next;
+		free(index);
+	}
+	(*rooms) = (*rooms)->next;
+	ft_strdel(&(tmp->name));
+	free(tmp);
+	return (0);
+}
+
+int		free_lists(t_room **rooms, char ***tab, int var)
+{
 	int		i;
 
 	i = 0;
 	while (*rooms)
-	{
-		tmp = (*rooms);
-		(*rooms) = (*rooms)->next;
-		ft_strdel(&(tmp->name));
-		free(tmp);
-	}
+		free_rooms_and_links(rooms);
 	while (*tab && (*tab)[i])
 	{
 		ft_strdel(&((*tab)[i]));

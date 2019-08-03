@@ -6,7 +6,7 @@
 /*   By: qgirard <qgirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 01:52:32 by qgirard           #+#    #+#             */
-/*   Updated: 2019/08/02 05:14:11 by qgirard          ###   ########.fr       */
+/*   Updated: 2019/08/03 05:56:27 by qgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef struct		s_links
 {
-	int				room;
+	char			*room;
 	struct s_links	*next;
 }					t_links;
 
@@ -30,10 +30,20 @@ typedef struct		s_room
 	struct s_room	*next;
 }					t_room;
 
+typedef struct		s_norme
+{
+	char			*line;
+	int				count;
+}					t_norme;
+
 int					checklines(t_room **rooms, char ***tab);
-int					fill_rooms_list(t_room **rooms, char *line, int *var);
+int					check_coords_in_room(char *line);
+int					check_if_tubes(t_room **rooms, char *line, int *status);
 int					check_map_validity(t_room **rooms);
-int					free_lists(t_room **rooms, char ***tab, int var);
 int					error_of_status(int *status);
+int					error_while_gnl(char **line);
+int					fill_rooms_list(t_room **rooms, char *line, int *var);
+int					fill_tubes_list(t_room **rooms, char *line);
+int					free_lists(t_room **rooms, char ***tab, int var);
 
 #endif
