@@ -6,7 +6,7 @@
 /*   By: qgirard <qgirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 00:38:28 by qgirard           #+#    #+#             */
-/*   Updated: 2019/08/03 04:40:28 by qgirard          ###   ########.fr       */
+/*   Updated: 2019/08/05 22:13:35 by qgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**ft_realloctab(char ***tab)
 	i = 0;
 	while (*tab && (*tab)[i])
 		i++;
-	if (!(new = (char **)ft_memalloc(sizeof(char *) * (i + 2))))
+	if (!(new = (char **)malloc(sizeof(char *) * (i + 2))))
 		return (NULL);
 	i = 0;
 	while (*tab && (*tab)[i])

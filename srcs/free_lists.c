@@ -6,7 +6,7 @@
 /*   By: qgirard <qgirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 01:56:55 by qgirard           #+#    #+#             */
-/*   Updated: 2019/08/03 04:39:06 by qgirard          ###   ########.fr       */
+/*   Updated: 2019/08/05 23:36:42 by qgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		free_rooms_and_links(t_room **rooms)
 	(*rooms) = (*rooms)->next;
 	ft_strdel(&(tmp->name));
 	free(tmp);
-	return (0);
+	return (1);
 }
 
 int		free_lists(t_room **rooms, char ***tab, int var)

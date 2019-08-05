@@ -6,7 +6,7 @@
 /*   By: qgirard <qgirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 01:40:55 by qgirard           #+#    #+#             */
-/*   Updated: 2019/08/03 06:11:51 by qgirard          ###   ########.fr       */
+/*   Updated: 2019/08/06 00:45:14 by qgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int		main(int argc, char **argv)
 	tab = NULL;
 	(void)argc;
 	(void)argv;
-	if (checklines(&rooms, &tab))
+	if (!checklines(&rooms, &tab))
 		return (free_lists(&rooms, &tab, 1));
-	if (check_map_validity(&rooms))
+	if (!check_map_validity(&rooms))
 		return (free_lists(&rooms, &tab, 1));
 	// while (rooms)
 	// {
@@ -33,7 +33,7 @@ int		main(int argc, char **argv)
 	// 		ft_printf("TUBE : %s\n", rooms->links->room);
 	// 		rooms->links = rooms->links->next;
 	// 	}
-	// 	ft_putchar('\n');
+	// 	ft_printf("---------------------------------------------------\n\n\n\n");
 	// 	rooms = rooms->next;
 	// }
 	ft_putendl("FINISH");
