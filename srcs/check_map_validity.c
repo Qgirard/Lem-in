@@ -6,11 +6,31 @@
 /*   By: qgirard <qgirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 00:17:22 by qgirard           #+#    #+#             */
-/*   Updated: 2019/08/06 00:43:34 by qgirard          ###   ########.fr       */
+/*   Updated: 2019/08/06 01:49:41 by qgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lemin.h"
+
+int		advance_in_links(t_room **rooms, char *name, char *prev, t_room *tmp)
+{
+	t_links	*buf;
+
+	while (tmp && ft_strcmp(tmp->name, name))
+		tmp = tmp->next;
+	if (tmp->end == 1)
+		return (1);
+	buf = tmp->links;
+	while (buf)
+	{
+		if (buf && !ft_strcmp(buf->room, prev))
+			buf = buf->next;
+		if (check_links_in_map(rooms, 0, buf->room, tmp->name))
+			return (1);
+		buf = buf->next;
+	}
+	return (0);
+}
 
 int		check_links_in_map(t_room **rooms, int start, char *name, char *prev)
 {
@@ -35,19 +55,8 @@ int		check_links_in_map(t_room **rooms, int start, char *name, char *prev)
 	}
 	else
 	{
-		while (tmp && ft_strcmp(tmp->name, name))
-			tmp = tmp->next;
-		if (tmp->end == 1)
+		if (advance_in_links(rooms, name, prev, tmp))
 			return (1);
-		buf = tmp->links;
-		while (buf)
-		{
-			if (buf && !ft_strcmp(buf->room, prev))
-				buf = buf->next;
-			if (check_links_in_map(rooms, 0, buf->room, tmp->name))
-				return (1);
-			buf = buf->next;
-		}
 	}
 	return (0);
 }

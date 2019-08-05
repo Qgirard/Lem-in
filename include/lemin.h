@@ -6,7 +6,7 @@
 /*   By: qgirard <qgirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 01:52:32 by qgirard           #+#    #+#             */
-/*   Updated: 2019/08/05 23:45:03 by qgirard          ###   ########.fr       */
+/*   Updated: 2019/08/06 01:55:19 by qgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ typedef struct		s_norme
 	int				count;
 }					t_norme;
 
-int					checklines(t_room **rooms, char ***tab);
 int					check_coords_in_room(char *line);
 int					check_if_tubes(t_room **rooms, char *line, int *status);
+int					check_links_in_map(t_room **rooms, int start, char *name,
+					char *prev);
 int					check_map_validity(t_room **rooms);
+int					checklines(t_room **rooms, char ***tab);
 int					error_of_status(int *status);
 int					error_while_gnl(char **line);
 int					error_with_status(char **line, t_room **rooms);
