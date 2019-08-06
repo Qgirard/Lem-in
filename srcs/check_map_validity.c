@@ -6,28 +6,34 @@
 /*   By: qgirard <qgirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 00:17:22 by qgirard           #+#    #+#             */
-/*   Updated: 2019/08/06 01:49:41 by qgirard          ###   ########.fr       */
+/*   Updated: 2019/08/06 05:54:25 by qgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lemin.h"
 
+//Check peut etre faire un tableau pour garder en memoire les rooms ou l'on est deja passe
+
 int		advance_in_links(t_room **rooms, char *name, char *prev, t_room *tmp)
 {
 	t_links	*buf;
 
+	buf = NULL;
 	while (tmp && ft_strcmp(tmp->name, name))
 		tmp = tmp->next;
 	if (tmp->end == 1)
 		return (1);
-	buf = tmp->links;
+	if (tmp && tmp->links)
+		buf = tmp->links;
 	while (buf)
 	{
 		if (buf && !ft_strcmp(buf->room, prev))
 			buf = buf->next;
-		if (check_links_in_map(rooms, 0, buf->room, tmp->name))
-			return (1);
-		buf = buf->next;
+		if (buf)
+			if (check_links_in_map(rooms, 0, buf->room, tmp->name))
+				return (1);
+		if (buf && buf->next)
+			buf = buf->next;
 	}
 	return (0);
 }

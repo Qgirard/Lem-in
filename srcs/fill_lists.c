@@ -6,7 +6,7 @@
 /*   By: qgirard <qgirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 02:39:11 by qgirard           #+#    #+#             */
-/*   Updated: 2019/08/05 23:35:46 by qgirard          ###   ########.fr       */
+/*   Updated: 2019/08/06 05:28:31 by qgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		fill_tubes_with_room_bis(t_norme *norme, t_room **tmp,
 {
 	if (!ft_strcmp((*tmp)->name, norme->line))
 	{
-		if (!((*new) = (t_links *)malloc(sizeof(t_links))))
+		if (!((*new) = (t_links *)ft_memalloc(sizeof(t_links))))
 			return (0);
 		if (!((*new)->room = ft_strsub(buf, 0, ft_strlen(buf)
 		- ft_strlen(norme->line) - 1)))
@@ -52,7 +52,7 @@ int		fill_tubes_with_room(t_norme *norme, t_room **tmp, t_links **new,
 	if (!ft_strncmp((*tmp)->name, norme->line,
 	ft_strchr(norme->line, '-') - norme->line))
 	{
-		if (!((*new) = (t_links *)malloc(sizeof(t_links))))
+		if (!((*new) = (t_links *)ft_memalloc(sizeof(t_links))))
 			return (0);
 		if (!((*new)->room = ft_strsub(norme->line,
 		ft_strchr(norme->line, '-') - norme->line + 1, ft_strlen(norme->line)
